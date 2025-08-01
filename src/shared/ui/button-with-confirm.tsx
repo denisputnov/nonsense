@@ -26,6 +26,8 @@ export const ButtonWithConfirm = ({onConfirm, config}: ButtonWithConfirmProps) =
     if (!isConfirmationRequested) return setIsConfirmationRequested(true);
 
     onConfirm();
+
+    setIsConfirmationRequested(false);
   };
 
   return (

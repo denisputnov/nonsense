@@ -10,9 +10,5 @@ export default function Layout({children}: PropsWithChildren) {
 
   const {sessionId} = useParams<{sessionId: string}>();
 
-  return (
-    <PulsarConnectionProvider sessionId={sessionId}>
-      <div className="flex flex-col justify-center items-center min-h-screen px-2">{children}</div>
-    </PulsarConnectionProvider>
-  );
+  return <PulsarConnectionProvider sessionId={sessionId}>{children}</PulsarConnectionProvider>;
 }

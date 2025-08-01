@@ -1,3 +1,3 @@
-export * from './end';
-export * from './preparation';
-export * from './game-field';
+export * from './story-renderer';
+export * from './waiting-list';
+export * from './admin-controls';

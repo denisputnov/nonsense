@@ -1,6 +1,6 @@
 'use client';
 
-import {Button, Link} from '@heroui/react';
+import {Button} from '@heroui/react';
 import {useTheme} from 'next-themes';
 import Image from 'next/image';
 import {CreateSessionButton} from '@/shared/components';
@@ -15,7 +15,7 @@ export default function Page() {
         width={600}
         height={5}
         alt="ЧЕПУХА"
-        className="dark:opacity-60 select-none pointer-events-none"
+        className="dark:opacity-80 select-none pointer-events-none"
       />
       <div className="flex gap-4">
         <CreateSessionButton />

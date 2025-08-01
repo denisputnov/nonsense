@@ -7,3 +7,7 @@
 html {
     @apply duration-300 ease-in-out;
 }
+
+html.dark .center-gradient {
+    background-image: radial-gradient(at center, rgb(13, 14, 33) 20%, rgba(0,0,0,1) 100%);
+}

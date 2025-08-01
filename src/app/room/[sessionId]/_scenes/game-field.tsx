@@ -8,7 +8,6 @@ import {useEffect, useRef, useState} from 'react';
 import {Textarea} from '@heroui/input';
 import {FinalStoryShuffle} from '@/shared/final-story-shuffle';
 import shuffle from 'lodash/shuffle';
-import {getRandomItem, randomInteger} from '@/shared/utils';
 
 export const GameField = () => {
   const players = usePlayers();
