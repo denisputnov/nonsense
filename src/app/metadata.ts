@@ -20,7 +20,7 @@ export const formatMetadata = (meta: Pick<Metadata, 'title' | 'description'>): M
   },
 
   icons: {
-    icon: './favicon.ico',
+    icon: '/favicon.ico',
   },
 
   verification: {
