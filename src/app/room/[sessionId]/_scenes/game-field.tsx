@@ -132,7 +132,8 @@ export const GameField = () => {
           {isCurrentPlayerReady ? 'Изменить' : 'Готов'}
         </Button>
         <p className="opacity-60 text-sm">
-          Игроков готово: {readyPlayersCount}/{players.length}
+          Вопрос: {sessionData.currentQuestionIndex + 1}/{question?.def.length} | Игроков готово: {readyPlayersCount}/
+          {players.length}
         </p>
       </CardFooter>
     </Card>
