@@ -1,9 +1,9 @@
 'use client';
 
 import {Alert, Button, Card, CardBody, Chip, cn} from '@heroui/react';
-import {QuestionSelector, ShuffleStrategySelector} from '@/shared/components';
+import {InvitePlayersMenu, QuestionSelector, ShuffleStrategySelector} from '@/shared/components';
 import {useOnlineClients} from '@/shared/hooks/use-online-clients';
-import {useSyncPulsarState} from '@/shared/pulsar';
+import {useSyncPulsarState} from '@/shared/lib/pulsar';
 import {useIsSessionAuthor} from '@/shared/hooks';
 
 export const Preparation = () => {
@@ -29,7 +29,10 @@ export const Preparation = () => {
         })}
       >
         <div className="flex flex-col gap-4">
-          <h1 className="text-2xl font-semibold">Игроки</h1>
+          <div className="flex justify-between items-center gap-2">
+            <h1 className="text-2xl font-semibold">Игроки</h1>
+            <InvitePlayersMenu />
+          </div>
           <div className="flex flex-row flex-wrap gap-2">
             {clients.map(([clientId, {username}]) => (
               <Chip color="primary" variant="flat" key={clientId} size="lg">
@@ -49,10 +52,11 @@ export const Preparation = () => {
           )}
         </div>
         {isSessionAuthor && (
-          <div className="flex flex-col-reverse md:flex-col gap-4 border-divider w-full md:w-[240px] border-t md:border-t-0 md:border-l pt-2 md:pl-2">
+          <div className="flex flex-col-reverse md:flex-col gap-4 border-divider w-full md:w-[240px] border-t md:border-t-0 md:border-l pt-2 md:pl-2 md:pt-0">
             <Button color="primary" fullWidth onPress={onStart}>
               Начать игру
             </Button>
+
             <QuestionSelector />
             <ShuffleStrategySelector />
           </div>

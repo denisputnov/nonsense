@@ -2,7 +2,7 @@
 
 import {Question, QuestionsListKey} from '@/shared/questions';
 import {Select, SelectItem, SharedSelection} from '@heroui/react';
-import {usePulsarState, useSyncPulsarState} from '@/shared/pulsar';
+import {usePulsarState, useSyncPulsarState} from '../lib/pulsar';
 
 export const QuestionSelector = () => {
   const sync = useSyncPulsarState();
@@ -27,8 +27,11 @@ export const QuestionSelector = () => {
       onSelectionChange={onSelect}
     >
       {Object.entries(Question).map(([key, meta]) => (
-        <SelectItem color="success" variant="flat" key={key}>
-          {meta.name}
+        <SelectItem color="success" variant="flat" key={key} textValue={meta.name}>
+          <div className="flex flex-col gap-1">
+            <p className="text-medium">{meta.name}</p>
+            <p className="opacity-60 text-sm">{meta.description}</p>
+          </div>
         </SelectItem>
       ))}
     </Select>

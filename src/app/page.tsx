@@ -1,15 +1,9 @@
-'use client';
-
-import {Button} from '@heroui/react';
-import {useTheme} from 'next-themes';
 import Image from 'next/image';
-import {CreateSessionButton} from '@/shared/components';
+import {ConnectExistingSessionButton, CreateSessionButton} from '@/shared/components';
 
 export default function Page() {
-  const {setTheme} = useTheme();
-
   return (
-    <div className="flex flex-col gap-8 items-center justify-center h-screen px-8">
+    <div className="flex flex-col gap-8 items-center justify-center h-screen-no-header flex-1 px-8">
       <Image
         src={'title.svg'}
         width={600}
@@ -17,15 +11,9 @@ export default function Page() {
         alt="ЧЕПУХА"
         className="dark:opacity-80 select-none pointer-events-none"
       />
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-col sm:flex-row">
         <CreateSessionButton />
-        <Button
-          variant="ghost"
-          color="secondary"
-          onPress={() => setTheme(prev => (prev === 'light' ? 'dark' : 'light'))}
-        >
-          Тема
-        </Button>
+        <ConnectExistingSessionButton />
       </div>
     </div>
   );

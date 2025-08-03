@@ -1,6 +1,6 @@
 'use client';
 
-import {SESSION_CODE_SCHEMA, usePulsarClient} from '@/shared/pulsar';
+import {SESSION_CODE_SCHEMA, usePulsarClient} from '@/shared/lib/pulsar';
 import {Alert, Button} from '@heroui/react';
 import {useRouter, useSearchParams} from 'next/navigation';
 import {useEffect, useState} from 'react';
@@ -33,7 +33,7 @@ export default function Page() {
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center max-w-md w-full mx-auto min-h-screen">
+    <div className="flex flex-col gap-4 justify-center items-center max-w-md w-full mx-auto min-h-screen-no-header">
       <h1 className="text-center font-semibold w-full">Выберите имя пользователя</h1>
       <Input
         label="Имя пользователя"

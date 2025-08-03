@@ -1,6 +1,6 @@
 'use client';
 
-import {usePulsarState} from '@/shared/pulsar';
+import {usePulsarState} from '../lib/pulsar';
 import {useMemo} from 'react';
 
 export const usePlayers = () => {

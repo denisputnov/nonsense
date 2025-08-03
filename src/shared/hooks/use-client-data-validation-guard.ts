@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect} from 'react';
-import {usePulsarClient} from '@/shared/pulsar';
+import {usePulsarClient} from '../lib/pulsar';
 import {useParams, useRouter} from 'next/navigation';
 
 export const useClientDataValidationGuard = () => {

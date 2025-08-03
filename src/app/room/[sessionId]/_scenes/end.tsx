@@ -1,6 +1,6 @@
 'use client';
 
-import {usePulsarClient, usePulsarState} from '@/shared/pulsar';
+import {usePulsarClient, usePulsarState} from '@/shared/lib/pulsar';
 import {WaitingList, StoryRenderer} from '../_components';
 
 export const End = () => {

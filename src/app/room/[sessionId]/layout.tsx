@@ -1,7 +1,7 @@
 'use client';
 
 import {PropsWithChildren} from 'react';
-import {PulsarConnectionProvider} from '@/shared/pulsar';
+import {PulsarConnectionProvider} from '@/shared/lib/pulsar';
 import {useParams} from 'next/navigation';
 import {useClientDataValidationGuard} from '@/shared/hooks';
 

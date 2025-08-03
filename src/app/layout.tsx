@@ -2,6 +2,9 @@ import type {Metadata, Viewport} from 'next';
 import './globals.css';
 import {Providers} from '@/app/providers';
 import {formatMetadata} from '@/app/metadata';
+import {Suspense} from 'react';
+import {Umami} from '@/app/umami';
+import {Header} from '@/shared/components';
 
 export const metadata: Metadata = formatMetadata({
   title: 'Чепуха',
@@ -25,8 +28,14 @@ export default function RootLayout({
     <html lang="ru" suppressHydrationWarning>
       <body className="antialiased">
         <Providers>
-          <main className="min-h-screen center-gradient">{children}</main>
+          <div className="center-gradient">
+            <Header />
+            <main className="flex flex-col gap-2 min-h-screen-no-header">{children}</main>
+          </div>
         </Providers>
+        <Suspense>
+          <Umami />
+        </Suspense>
       </body>
     </html>
   );

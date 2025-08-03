@@ -6,7 +6,7 @@ import {usePulsarV1Connection} from './pulsar-v1-connection';
 import {usePulsarState} from './pulsar-state';
 import {usePulsarClient} from './pulsar-client';
 import {SessionData} from './session-data';
-import {BuildSocketMessage} from '@/shared/pulsar/socket-message';
+import {BuildSocketMessage} from '@/shared/lib/pulsar/socket-message';
 
 export const useSyncPulsarState = () => {
   const {send} = usePulsarV1Connection();

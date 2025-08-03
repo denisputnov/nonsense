@@ -2,7 +2,7 @@
 
 import {Alert, Card, CardBody, CardHeader, Chip} from '@heroui/react';
 import {PropsWithChildren} from 'react';
-import {ClientMeta, usePulsarState, useSyncPulsarState} from '@/shared/pulsar';
+import {ClientMeta, usePulsarState, useSyncPulsarState} from '@/shared/lib/pulsar';
 import {ButtonWithConfirm} from '@/shared/ui';
 import {ArrowBigRightDashIcon, CheckIcon, ClockIcon, RotateCcwIcon} from 'lucide-react';
 import {DEFAULT_SESSION_STATE} from '@/shared/default-session-state';
@@ -34,7 +34,14 @@ const InGameControls = () => {
   const {players, playerReadyState} = sessionData;
 
   const onRestart = () => {
-    sync(() => DEFAULT_SESSION_STATE);
+    sync(data => {
+      return {
+        ...data,
+        ...DEFAULT_SESSION_STATE,
+        questionsListKey: data.questionsListKey,
+        finalStoryShuffleStrategy: data.finalStoryShuffleStrategy,
+      };
+    });
   };
 
   return (
@@ -126,8 +133,17 @@ const EndControls = () => {
   };
 
   const onRestart = () => {
-    sync(() => DEFAULT_SESSION_STATE);
+    sync(data => {
+      return {
+        ...data,
+        ...DEFAULT_SESSION_STATE,
+        questionsListKey: data.questionsListKey,
+        finalStoryShuffleStrategy: data.finalStoryShuffleStrategy,
+      };
+    });
   };
+
+  const isAllPlayersReadStories = currentNarratorIndex + 1 === narratorsOrder.length && currentActorMeta;
 
   return (
     <Card className="w-full max-w-[800px]">
@@ -210,6 +226,12 @@ const EndControls = () => {
             }}
           />
         </div>
+        {isAllPlayersReadStories ? (
+          <Alert
+            color="success"
+            title={`Если игрок ${currentActorMeta?.username} уже прочитал историю — значит уже сходили все и можно перезапустить игру`}
+          />
+        ) : null}
         <ButtonWithConfirm
           onConfirm={onRestart}
           config={{
@@ -218,7 +240,7 @@ const EndControls = () => {
                 fullWidth: true,
                 startContent: <RotateCcwIcon size={16} />,
                 children: `Перезапустить игру`,
-                color: 'primary',
+                color: isAllPlayersReadStories ? 'success' : 'primary',
                 variant: 'flat',
               },
               tooltip: {

@@ -2,18 +2,21 @@
 
 import {Button, Card, CardBody, CardFooter, CardHeader} from '@heroui/react';
 import {usePlayers} from '@/shared/hooks';
-import {usePulsarClient, usePulsarState, useSyncPulsarState} from '@/shared/pulsar';
+import {usePulsarClient, usePulsarState, useSyncPulsarState} from '@/shared/lib/pulsar';
 import {Question} from '@/shared/questions';
 import {useEffect, useRef, useState} from 'react';
 import {Textarea} from '@heroui/input';
 import {FinalStoryShuffle} from '@/shared/final-story-shuffle';
 import shuffle from 'lodash/shuffle';
+import {useFullscreenAnnouncer} from '@/shared/lib/fullscreen-announcer';
+import {NextQuestion} from '@/shared/announcements/next-question';
 
 export const GameField = () => {
   const players = usePlayers();
   const {clientId} = usePulsarClient();
   const {sessionData} = usePulsarState();
   const sync = useSyncPulsarState();
+  const {pushMessage} = useFullscreenAnnouncer();
 
   const [text, setText] = useState<string>('');
   const isInputInvalid = text.length < 1;
@@ -35,7 +38,17 @@ export const GameField = () => {
   useEffect(() => {
     setText('');
     setTouched(false);
-  }, [sessionData?.currentQuestionIndex]);
+
+    if (!sessionData) return;
+
+    const {title} = Question?.[sessionData?.questionsListKey]?.def?.[sessionData.currentQuestionIndex];
+
+    pushMessage({
+      content: () => <NextQuestion question={title} />,
+      isAutoClosable: true,
+      delay: 500,
+    });
+  }, [sessionData?.currentQuestionIndex, pushMessage]);
 
   if (!sessionData) return null;
 

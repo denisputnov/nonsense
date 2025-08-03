@@ -2,7 +2,7 @@
 
 import {Button} from '@heroui/react';
 import {useMutation} from '@tanstack/react-query';
-import {PulsarHttpClient} from '@/shared/pulsar';
+import {PulsarHttpClient} from '../lib/pulsar';
 import {useRouter} from 'next/navigation';
 import {DEFAULT_SESSION_STATE} from '@/shared/default-session-state';
 

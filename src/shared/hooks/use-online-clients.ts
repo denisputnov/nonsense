@@ -1,7 +1,7 @@
 'use client';
 
 import {useMemo} from 'react';
-import {usePulsarState} from '@/shared/pulsar';
+import {usePulsarState} from '../lib/pulsar';
 
 export const useOnlineClients = () => {
   const {clients} = usePulsarState();

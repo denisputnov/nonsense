@@ -1,6 +1,6 @@
 'use client';
 
-import {usePulsarState, useSyncPulsarState} from '@/shared/pulsar';
+import {usePulsarState, useSyncPulsarState} from '@/shared/lib/pulsar';
 import {CardFooter} from '@heroui/react';
 import {ButtonWithConfirm} from '@/shared/ui';
 import {ArrowBigRightDashIcon, CheckIcon} from 'lucide-react';

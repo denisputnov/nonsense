@@ -1,6 +1,6 @@
 'use client';
 
-import {usePulsarClient, usePulsarState} from '@/shared/pulsar';
+import {usePulsarClient, usePulsarState} from '@/shared/lib/pulsar';
 import {Question, QuestionAnswerType} from '@/shared/questions';
 import {exhaustiveCheck} from '@/shared/utils';
 import {Card, CardBody, CardHeader} from '@heroui/react';
@@ -15,7 +15,9 @@ export const StoryRenderer = () => {
 
   const {finalStories, questionsListKey} = sessionData;
 
-  const questionsList = Question[questionsListKey].def;
+  const question = Question[questionsListKey];
+
+  const formattedStory = question.buildStory(finalStories[clientId]);
 
   const answerRenderer = (type: QuestionAnswerType, content: string) => {
     switch (type) {
@@ -31,13 +33,16 @@ export const StoryRenderer = () => {
   return (
     <Card className="w-full max-w-[800px]">
       <CardHeader>Расскажите свою историю</CardHeader>
-      <CardBody className="divide-y-1 divide-divider">
-        {questionsList.map(({title, answerType}, index) => (
-          <div key={index} className="px-1 py-2">
-            <p className="text-xs opacity-60">{title}</p>
-            <p>{answerRenderer(answerType, capitalize(finalStories[clientId][index]))}</p>
-          </div>
-        ))}
+      <CardBody className="flex flex-col gap-4">
+        {formattedStory}
+        <div className="divide-y-1 divide-divider">
+          {question.def.map(({title, answerType}, index) => (
+            <div key={index} className="px-1 py-2">
+              <p className="text-xs opacity-60">{title}</p>
+              <p>{answerRenderer(answerType, capitalize(finalStories[clientId][index]))}</p>
+            </div>
+          ))}
+        </div>
       </CardBody>
       <StoryActionFooter />
     </Card>

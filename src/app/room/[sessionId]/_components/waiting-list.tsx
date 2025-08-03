@@ -1,6 +1,6 @@
 'use client';
 
-import {usePulsarClient, usePulsarState} from '@/shared/pulsar';
+import {usePulsarClient, usePulsarState} from '@/shared/lib/pulsar';
 import {Card, CardBody, CardHeader} from '@heroui/react';
 import {cn} from '@/shared/utils';
 

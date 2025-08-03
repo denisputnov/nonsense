@@ -1,4 +1,4 @@
-import {SessionData} from '@/shared/pulsar/session-data';
+import {SessionData} from '@/shared/lib/pulsar/session-data';
 
 export const DEFAULT_SESSION_STATE: SessionData = {
   finalStories: {},
@@ -12,7 +12,7 @@ export const DEFAULT_SESSION_STATE: SessionData = {
   narratorsOrder: [],
   currentNarratorIndex: 0,
 };
-//
+
 // export const DEFAULT_SESSION_STATE: SessionData = {
 //   finalStories: {},
 //   state: 'started',

@@ -1,7 +1,7 @@
 'use client';
 
 import {Select, SelectItem, SharedSelection} from '@heroui/react';
-import {usePulsarState, useSyncPulsarState} from '@/shared/pulsar';
+import {usePulsarState, useSyncPulsarState} from '../lib/pulsar';
 import {FinalStoryShuffle, FinalStoryShuffleStrategy} from '@/shared/final-story-shuffle';
 
 export const ShuffleStrategySelector = () => {

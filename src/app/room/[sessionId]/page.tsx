@@ -1,11 +1,13 @@
 'use client';
 
-import {usePulsarState} from '@/shared/pulsar';
+import {usePulsarState} from '@/shared/lib/pulsar';
 import {GameField, Preparation, End} from './_scenes';
 import {AdminControls} from './_components';
+import {useIsSessionAuthor} from '@/shared/hooks';
 
 export default function Page() {
   const {sessionData} = usePulsarState();
+  const isSessionAuthor = useIsSessionAuthor();
 
   if (!sessionData?.state) return null;
 
@@ -15,10 +17,10 @@ export default function Page() {
     end: <End />,
   }[sessionData.state];
 
-  const showAdminPanel = sessionData.state !== 'preparation';
+  const showAdminPanel = sessionData.state !== 'preparation' && isSessionAuthor;
 
   return (
-    <div className="flex flex-col gap-2 justify-start md:justify-center items-center min-h-screen p-2">
+    <div className="flex flex-col gap-2 justify-start md:justify-center items-center min-h-screen-no-header p-2">
       {showAdminPanel && <AdminControls />}
       {scene}
     </div>

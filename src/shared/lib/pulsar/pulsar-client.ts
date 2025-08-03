@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 import {persist} from 'zustand/middleware';
-import {USERNAME_SCHEMA} from '@/shared/pulsar/socket-message';
+import {USERNAME_SCHEMA} from '@/shared/lib/pulsar/socket-message';
 
 export const LOCAL_STORAGE_KEY = 'pulsar-client';
 
