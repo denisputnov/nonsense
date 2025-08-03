@@ -18,6 +18,7 @@ import {CheckIcon, CopyIcon, LinkIcon, QrCodeIcon, UserRoundPlusIcon, XIcon} fro
 import {useEffect, useState} from 'react';
 import QRCode from 'react-qr-code';
 import {usePulsarState} from '../lib/pulsar';
+import {useTheme} from 'next-themes';
 
 const DEFAULT_BUTTON_TEXT = 'Пригласить участников';
 
@@ -114,6 +115,8 @@ type QrModalProps = {
 };
 
 const QrModal = ({controls: {isOpen, onOpenChange}, encoded}: QrModalProps) => {
+  const {theme} = useTheme();
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
@@ -125,8 +128,8 @@ const QrModal = ({controls: {isOpen, onOpenChange}, encoded}: QrModalProps) => {
                 size={512}
                 style={{height: 'auto', maxWidth: '100%', width: '100%'}}
                 value={encoded}
-                bgColor="#18181b"
-                fgColor="#9d9d9d"
+                bgColor={theme === 'dark' ? '#18181b' : 'white'}
+                fgColor={theme === 'dark' ? '#9d9d9d' : 'black'}
                 viewBox="0 0 512 512"
               />
             </ModalBody>
