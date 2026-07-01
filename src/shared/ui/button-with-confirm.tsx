@@ -1,3 +1,5 @@
+'use client';
+
 import {Button, ButtonProps, TooltipProps} from '@heroui/react';
 import {useState} from 'react';
 import {Tooltip} from '@heroui/tooltip';
